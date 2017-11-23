@@ -19,8 +19,10 @@ class homebrew(
   include boxen::config
   include homebrew::repo
 
-  file { [$installdir,
-          "${installdir}/bin",
+  file { $installdir:
+    ensure  => 'directory',
+  }
+  file { ["${installdir}/bin",
           "${installdir}/etc",
           "${installdir}/include",
           "${installdir}/lib",
@@ -48,7 +50,7 @@ class homebrew(
     owner   => $::boxen_user,
     group   => 'staff',
     mode    => '0755',
-    require => undef,
+    require => File[$installdir],
     before  => Exec["install homebrew to ${installdir}"],
   }
 
