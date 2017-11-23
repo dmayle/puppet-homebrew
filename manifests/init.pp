@@ -21,6 +21,8 @@ class homebrew(
 
   file { $installdir:
     ensure  => 'directory',
+    owner   => 'root',
+    group   => 'wheel',
     require => undef,
   }
   file { ["${installdir}/bin",
