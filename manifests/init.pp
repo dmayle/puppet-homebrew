@@ -21,6 +21,7 @@ class homebrew(
 
   file { $installdir:
     ensure  => 'directory',
+    require => nil,
   }
   file { ["${installdir}/bin",
           "${installdir}/etc",
